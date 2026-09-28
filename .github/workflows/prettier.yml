@@ -1,6 +1,12 @@
 name: Formating validation
 
-on: [ pull_request_target ]
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
 
 jobs:
   prettier:
@@ -9,6 +15,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Run Prettier
         id: prettier-run
